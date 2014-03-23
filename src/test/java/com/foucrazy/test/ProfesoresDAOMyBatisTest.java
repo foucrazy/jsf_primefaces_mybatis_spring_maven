@@ -7,31 +7,31 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import com.foucrazy.dao.NivelesMapper;
-import com.foucrazy.model.Nivel;
+import com.foucrazy.dao.ProfesoresMapper;
+import com.foucrazy.model.Profesor;
 
 @RunWith(SpringJUnit4ClassRunner.class)  
 @ContextConfiguration(locations = { "classpath:spring/application-config.xml" })
-public class NivelesDAOMyBatisTest {
+public class ProfesoresDAOMyBatisTest {
 	
 	@Autowired
-	NivelesMapper nivelesMapper;
+	ProfesoresMapper profesoresMapper;
 	
 	@Test
 	public void getAll() {	
-		assertNotNull(nivelesMapper);
-		List<Nivel> all  = nivelesMapper.getAll();
+		assertNotNull(profesoresMapper);
+		List<Profesor> all  = profesoresMapper.getAll();
 		assertNotNull(all);
 		assertTrue(all.size()>0);		
-		System.out.println("Cantidad de niveles:"+all.size());
+		System.out.println("Cantidad de profesores:"+all.size());
 	}
 
 	@Test
 	public void getFirst(){
-		assertNotNull(nivelesMapper);
-		Nivel first = nivelesMapper.findByPK(1);
+		assertNotNull(profesoresMapper);
+		Profesor first = profesoresMapper.findByPK(1);
 		assertNotNull(first);
-		assertTrue(first.idNivel==1);
+		assertTrue(first.idProfesor==1);
 		System.out.println(first);
 	}
 }

@@ -3,11 +3,11 @@
 <mapper namespace="com.foucrazy.dao.NivelesMapper">
     
 	<select id="findByPK" resultType="com.foucrazy.model.Nivel" parameterType="int">
-		select * from niveles where idNivel=#{id}
+		select "idNivel",valor from niveles where "idNivel"=#{id}
 	</select>
 	
 	<select id="getAll" resultType="com.foucrazy.model.Nivel">
-		select * from niveles
+		select "idNivel",valor from niveles
 	</select>
 	
 </mapper>
