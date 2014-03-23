@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    
+    <context:annotation-config />
     <context:component-scan base-package="com.foucrazy"/>
     <mvc:annotation-driven />
 
@@ -19,15 +19,31 @@
 	<bean name="/showMessage" class="com.foucrazy.ShowMessage"></bean>
 
 	<!-- Persistencia -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-  		<property name="dataSource" ref="dataSource" />
-	</bean>
-
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
         <property name="driverClassName" value="org.postgresql.Driver" />  
-        <property name="url" value="jdbc:postgresql:tutoriales" />  
-        <property name="username" value="postgres" />  
-        <property name="password" value="autentia" />  
+        <property name="url" value="jdbc:postgresql:autest" />  
+        <property name="username" value="postgres" />
+        <property name="password" value="khyxmorp" />  
     </bean>	
-	
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+  		<property name="dataSource" ref="dataSource" />
+  		<property name="mapperLocations"  value="classpath:com/foucrazy/dao/mybatis/**/*.xml" />
+	</bean>
+
+    <bean id="cursosMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">  
+        <property name="mapperInterface" value="com.foucrazy.dao.CursosMapper" />  
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />  
+    </bean>
+    
+    <bean id="nivelesMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">  
+        <property name="mapperInterface" value="com.foucrazy.dao.NivelesMapper" />  
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />  
+    </bean>
+    
+    <bean id="profesoresMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">  
+        <property name="mapperInterface" value="com.foucrazy.dao.ProfesoresMapper" />  
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />  
+    </bean>
+    
 </beans>
