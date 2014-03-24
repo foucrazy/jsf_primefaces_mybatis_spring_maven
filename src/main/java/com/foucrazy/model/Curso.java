@@ -34,6 +34,56 @@ public class Curso {
 		this.activo = activo;
 	}
 	
+	
+	
+	public Integer getIdCurso() {
+		return idCurso;
+	}
+
+	public void setIdCurso(Integer idCurso) {
+		this.idCurso = idCurso;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public Integer getHoras() {
+		return horas;
+	}
+
+	public void setHoras(Integer horas) {
+		this.horas = horas;
+	}
+
+	public Integer getIdNivel() {
+		return idNivel;
+	}
+
+	public void setIdNivel(Integer idNivel) {
+		this.idNivel = idNivel;
+	}
+
+	public Integer getIdProfesor() {
+		return idProfesor;
+	}
+
+	public void setIdProfesor(Integer idProfesor) {
+		this.idProfesor = idProfesor;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
 	@Override
 	public String toString() {
 		return "Curso [idCurso=" + idCurso + ", titulo=" + titulo + ", horas="

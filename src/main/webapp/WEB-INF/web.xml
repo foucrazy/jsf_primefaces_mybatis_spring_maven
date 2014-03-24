@@ -7,6 +7,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
     <display-name>jsf_primefaces_mybatis_spring_maven</display-name>
 
+    <!-- Spring -->
     <servlet>
         <servlet-name>dispatcherServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -22,4 +23,31 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!-- Fin Sprint -->
+    
+    <!-- JSF -->
+	  <servlet>
+	    <servlet-name>Faces Servlet</servlet-name>
+	    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+	    <load-on-startup>1</load-on-startup>
+	  </servlet>
+	  
+	  <servlet-mapping>
+	    <servlet-name>Faces Servlet</servlet-name>
+	    <url-pattern>/faces/*</url-pattern>
+	  </servlet-mapping>    
+      <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+      </servlet-mapping>
+      <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.faces</url-pattern>
+      </servlet-mapping>
+      <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+      </servlet-mapping>
+      
+     <!-- Fin JSF -->	  
 </web-app>
