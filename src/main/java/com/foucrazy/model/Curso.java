@@ -1,41 +1,41 @@
 package com.foucrazy.model;
 
-public class Curso {
-
-	public Integer idCurso;
-	public String titulo;
-	public Integer horas;
-	public Integer idNivel;
-	public Integer idProfesor;
-	public boolean activo;
+public class Curso{
 	
+	private Integer idCurso;
+	private String titulo;
+	private Integer horas;
+	private Nivel nivel;
+	private Profesor profesor;
+	private boolean activo;
+	private String documento;
 	public Curso(){
 		
-	}
+	}	
 	
-	public Curso(String titulo, Integer horas, Integer idNivel,
-			Integer idProfesor, boolean activo) {
+
+	public Curso(String titulo, Integer horas, Nivel nivel, Profesor profesor,
+			boolean activo, String documento) {
 		super();
 		this.titulo = titulo;
 		this.horas = horas;
-		this.idNivel = idNivel;
-		this.idProfesor = idProfesor;
+		this.nivel = nivel;
+		this.profesor = profesor;
 		this.activo = activo;
+		this.documento = documento;
 	}
 
-	public Curso(Integer idCurso, String titulo, Integer horas,
-			Integer idNivel, Integer idProfesor, boolean activo) {
-		super();
-		this.idCurso = idCurso;
-		this.titulo = titulo;
-		this.horas = horas;
-		this.idNivel = idNivel;
-		this.idProfesor = idProfesor;
-		this.activo = activo;
+
+	public String getDocumento() {
+		return documento;
 	}
-	
-	
-	
+
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
+
 	public Integer getIdCurso() {
 		return idCurso;
 	}
@@ -60,20 +60,20 @@ public class Curso {
 		this.horas = horas;
 	}
 
-	public Integer getIdNivel() {
-		return idNivel;
+	public Nivel getNivel() {
+		return nivel;
 	}
 
-	public void setIdNivel(Integer idNivel) {
-		this.idNivel = idNivel;
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
 	}
 
-	public Integer getIdProfesor() {
-		return idProfesor;
+	public Profesor getProfesor() {
+		return profesor;
 	}
 
-	public void setIdProfesor(Integer idProfesor) {
-		this.idProfesor = idProfesor;
+	public void setProfesor(Profesor profesor) {
+		this.profesor = profesor;
 	}
 
 	public boolean isActivo() {
@@ -84,11 +84,12 @@ public class Curso {
 		this.activo = activo;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Curso [idCurso=" + idCurso + ", titulo=" + titulo + ", horas="
-				+ horas + ", idNivel=" + idNivel + ", idProfesor=" + idProfesor
-				+ ", activo=" + activo + "]";
+				+ horas + ", nivel=" + nivel + ", profesor=" + profesor
+				+ ", activo=" + activo + ", documento=" + documento + "]";
 	}
 	
 }

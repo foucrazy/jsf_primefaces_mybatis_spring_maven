@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import com.foucrazy.dao.NivelesMapper;
+import com.foucrazy.dao.NivelesDao;
 import com.foucrazy.model.Nivel;
 
 @RunWith(SpringJUnit4ClassRunner.class)  
@@ -15,12 +15,12 @@ import com.foucrazy.model.Nivel;
 public class NivelesDAOMyBatisTest {
 	
 	@Autowired
-	NivelesMapper nivelesMapper;
+	NivelesDao nivelesDao;
 	
 	@Test
 	public void getAll() {	
-		assertNotNull(nivelesMapper);
-		List<Nivel> all  = nivelesMapper.getAll();
+		assertNotNull(nivelesDao);
+		List<Nivel> all  = nivelesDao.getAll();
 		assertNotNull(all);
 		assertTrue(all.size()>0);		
 		System.out.println("Cantidad de niveles:"+all.size());
@@ -28,10 +28,10 @@ public class NivelesDAOMyBatisTest {
 
 	@Test
 	public void getFirst(){
-		assertNotNull(nivelesMapper);
-		Nivel first = nivelesMapper.findByPK(1);
+		assertNotNull(nivelesDao);
+		Nivel first = nivelesDao.findByPK(1);
 		assertNotNull(first);
-		assertTrue(first.idNivel==1);
+		assertTrue(first.getIdNivel()==1);
 		System.out.println(first);
 	}
 }

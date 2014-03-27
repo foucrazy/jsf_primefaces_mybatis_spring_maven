@@ -18,7 +18,8 @@ create table cursos(
 	horas integer,
 	"idNivel" integer references niveles("idNivel"),
 	"idProfesor" integer references profesores("idProfesor"),
-	activo boolean	
+	activo boolean,
+	documento varchar(200)
 );
 
 insert into niveles("idNivel",valor) values (1,'Básico');
@@ -29,8 +30,8 @@ insert into profesores("idProfesor",nombre) values(1,'Roberto Canales Mora');
 insert into profesores("idProfesor",nombre) values(2,'Ismael Fernandez Molina');
 insert into profesores("idProfesor",nombre) values(3,'Félix González de Santos');
 
-insert into cursos(titulo,horas,"idNivel","idProfesor",activo) values('Manipulación de datos en MongoDB mediante Aggregation Pipeline',10,3,1,true);
-insert into cursos(titulo,horas,"idNivel","idProfesor",activo) values('Agrupación de datos con MongoDB: uso de Group',7,2,1,true);
-insert into cursos(titulo,horas,"idNivel","idProfesor",activo) values('Primeros pasos con Apache Cassandra',6,1,1,true);
-insert into cursos(titulo,horas,"idNivel","idProfesor",activo) values('Desarrollo rápido de aplicaciones CRUD con OpenXava',10,2,2,true);
-insert into cursos(titulo,horas,"idNivel","idProfesor",activo) values('Primeros pasos con MyBatis',3,1,3,false);
+insert into cursos(titulo,horas,"idNivel","idProfesor",activo,documento) values('Manipulación de datos en MongoDB mediante Aggregation Pipeline',10,3,1,true,'');
+insert into cursos(titulo,horas,"idNivel","idProfesor",activo,documento) values('Agrupación de datos con MongoDB: uso de Group',7,2,1,true,'');
+insert into cursos(titulo,horas,"idNivel","idProfesor",activo,documento) values('Primeros pasos con Apache Cassandra',6,1,1,true,'');
+insert into cursos(titulo,horas,"idNivel","idProfesor",activo,documento) values('Desarrollo rápido de aplicaciones CRUD con OpenXava',10,2,2,true,'');
+insert into cursos(titulo,horas,"idNivel","idProfesor",activo,documento) values('Primeros pasos con MyBatis',3,1,3,false,'');

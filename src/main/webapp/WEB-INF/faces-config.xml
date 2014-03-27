@@ -6,10 +6,27 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
 
+    <!-- Necesario para la inyeccion de los servicios de Spring -->
+	<application>
+	     <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>	     
+	</application>
+
     <managed-bean>
         <managed-bean-name>newCurso</managed-bean-name>
-        <managed-bean-class>com.foucrazy.model.Curso</managed-bean-class>
+        <managed-bean-class>com.foucrazy.beans.CursoBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+         	<property-name>cursosService</property-name>         	
+         	<value>#{cursosService}</value>
+        </managed-property>
+        <managed-property>
+         	<property-name>nivelesService</property-name>         	
+         	<value>#{nivelesService}</value>
+        </managed-property>
+        <managed-property>
+         	<property-name>profesoresService</property-name>         	
+         	<value>#{profesoresService}</value>
+        </managed-property>                
     </managed-bean>
     
 </faces-config>

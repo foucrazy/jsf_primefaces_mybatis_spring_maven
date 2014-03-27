@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import com.foucrazy.dao.ProfesoresMapper;
+import com.foucrazy.dao.ProfesoresDao;
 import com.foucrazy.model.Profesor;
 
 @RunWith(SpringJUnit4ClassRunner.class)  
@@ -15,12 +15,12 @@ import com.foucrazy.model.Profesor;
 public class ProfesoresDAOMyBatisTest {
 	
 	@Autowired
-	ProfesoresMapper profesoresMapper;
+	ProfesoresDao profesoresDao;
 	
 	@Test
 	public void getAll() {	
-		assertNotNull(profesoresMapper);
-		List<Profesor> all  = profesoresMapper.getAll();
+		assertNotNull(profesoresDao);
+		List<Profesor> all  = profesoresDao.getAll();
 		assertNotNull(all);
 		assertTrue(all.size()>0);		
 		System.out.println("Cantidad de profesores:"+all.size());
@@ -28,10 +28,10 @@ public class ProfesoresDAOMyBatisTest {
 
 	@Test
 	public void getFirst(){
-		assertNotNull(profesoresMapper);
-		Profesor first = profesoresMapper.findByPK(1);
+		assertNotNull(profesoresDao);
+		Profesor first = profesoresDao.findByPK(1);
 		assertNotNull(first);
-		assertTrue(first.idProfesor==1);
+		assertTrue(first.getIdProfesor()==1);
 		System.out.println(first);
 	}
 }

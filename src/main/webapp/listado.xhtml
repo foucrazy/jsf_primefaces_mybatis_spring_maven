@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Listado de cursos</title>
+</h:head>
+<h:body>
+
+<h2>Catálogo de cursos activos</h2>
+	<h:form prependId="false"> 
+	 	<p:dataTable var="c" value="#{newCurso.listadoActivos}"
+	                 paginator="true" rows="5"
+	                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
+	                  
+            <!-- The primefaces backing bean (ViewScoped!) must hold it's own List of the rows. 
+            So, e.g., if you query the database every time you request the p:dataTable:value sorting will not work. 
+            Solution: Collection the list from the Database and keep it in a local List variable in the backing bean. -->
+			<p:column sortBy="#{c.titulo}" headerText="Titulo">				
+	    		<a href="#{c.documento}">#{c.titulo}</a>
+	   		</p:column>
+			<p:column>				
+	   			<f:facet name="header">Nivel</f:facet>
+	   			#{c.nivel.valor}
+	   		</p:column>
+			<p:column>
+				<f:facet name="header">Horas</f:facet>
+	   			#{c.horas}
+	   		</p:column>
+		</p:dataTable>
+	</h:form>
+	<br />	
+	<p:button href="nuevo.xhtml" value="Nuevo curso"></p:button>
+	
+</h:body>
+</html>
+
+

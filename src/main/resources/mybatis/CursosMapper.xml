@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.foucrazy.dao.CursosDao">
+    
+	<resultMap type='com.foucrazy.model.Curso' id='CursoResult'>
+	    <id property='idCurso' column='idCurso'/>
+	    <result property='activo' column='activo'/>
+	    <result property='horas' column='horas'/>
+	    <result property='titulo' column='titulo'/>
+	    <result property='documento' column='documento'/>	  	    
+	    <association property='nivel' resultMap='NivelResult'/>
+	    <association property='profesor' resultMap='ProfesorResult'/>
+   </resultMap>
+
+	<resultMap type='com.foucrazy.model.Nivel' id='NivelResult'>
+	   <id property='idNivel' column='idNivel'/>	   
+	   <result property='valor' column='valor'/>    
+	</resultMap>    
+	
+	<resultMap type='com.foucrazy.model.Profesor' id='ProfesorResult'>
+	   <id property='idProfesor' column='idProfesor'/>	   
+	   <result property='nombre' column='nombre'/>    
+	</resultMap>    	    
+   
+	<select id="findByPK" resultMap="CursoResult" parameterType="int">		
+		select "idCurso",titulo,horas,documento,activo,c."idProfesor" as "idProfesor",nombre , c."idNivel" as "idNivel", valor
+		from cursos c inner join profesores p on c."idProfesor"=p."idProfesor"
+		inner join niveles n on c."idNivel"=n."idNivel"
+		where "idCurso"=#{id}		
+	</select>
+	
+	<select id="getAll" resultMap="CursoResult">
+		select "idCurso",titulo,horas,documento,activo,c."idProfesor" as "idProfesor",nombre , c."idNivel" as "idNivel", valor
+		from cursos c inner join profesores p on c."idProfesor"=p."idProfesor"
+		inner join niveles n on c."idNivel"=n."idNivel"
+	</select>
+	
+	<select id="getAllActive" resultMap="CursoResult">
+		select "idCurso",titulo,horas,documento,activo,c."idProfesor" as "idProfesor",nombre , c."idNivel" as "idNivel", valor
+		from cursos c inner join profesores p on c."idProfesor"=p."idProfesor"
+		inner join niveles n on c."idNivel"=n."idNivel"
+		where activo=true
+	</select>
+	
+	<insert id="create" parameterType="com.foucrazy.model.Curso" useGeneratedKeys="true" keyProperty="idCurso" keyColumn="idCurso">
+	    insert into cursos(titulo,horas,"idNivel","idProfesor",activo,documento) 
+	    values(#{titulo},#{horas},#{nivel.idNivel},#{profesor.idProfesor},#{activo},#{documento});
+	</insert>
+	
+	<delete id="delete" parameterType="com.foucrazy.model.Curso">
+	    delete from cursos where "idCurso"=#{idCurso}
+	</delete>
+	
+</mapper>

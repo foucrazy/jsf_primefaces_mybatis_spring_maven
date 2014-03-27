@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Añadir curso</title>
+</h:head>
+<h:body>
+	<h:form enctype="multipart/form-data">
+		<h2>A&ntilde;adir curso</h2>
+		<table>
+			<tr>
+				<td>Activo</td>
+				<td><h:selectBooleanCheckbox value="#{newCurso.activo}"	required="true" /></td>
+			</tr>
+			<tr>
+				<td>Profesor</td>
+				<td>
+					<h:selectOneMenu value="#{newCurso.idProfesor}">
+						<f:selectItems value="#{newCurso.listadoProfesores}" var="c" itemLabel="#{c.nombre}" itemValue="#{c.idProfesor}" />
+					</h:selectOneMenu>
+				</td>
+			</tr>
+			<tr>
+				<td>T&iacute;tulo</td>
+				<td><h:inputText label="Titulo" value="#{newCurso.titulo}" required="true" /></td>
+			</tr>
+			<tr>
+				<td>Nivel</td>
+				<td>
+					<h:selectOneMenu value="#{newCurso.idNivel}">
+							<f:selectItems value="#{newCurso.listadoNiveles}" var="c" itemLabel="#{c.valor}" itemValue="#{c.idNivel}" />
+					</h:selectOneMenu>
+				</td>
+			</tr>
+			<tr>
+				<td>Horas</td>
+				<td><p:spinner value="#{newCurso.horas}" /></td>
+			</tr>
+			<tr>
+				<td>Adjuntar archivo</td>
+				<td>
+				    <p:fileUpload value="#{newCurso.file}" mode="simple"/>					
+				</td>
+			</tr>
+		</table>
+		<h:messages />
+		<p>
+			<h:commandButton value="Crear curso" action="#{newCurso.guardar}" />
+		</p>
+	</h:form>
+	<br />
+
+	<p:button href="listado.xhtml" value="Listado de cursos"></p:button>
+
+</h:body>
+</html>
+

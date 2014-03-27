@@ -7,20 +7,22 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import com.foucrazy.dao.CursosMapper;
+import com.foucrazy.dao.CursosDao;
 import com.foucrazy.model.Curso;
+import com.foucrazy.model.Nivel;
+import com.foucrazy.model.Profesor;
 
 @RunWith(SpringJUnit4ClassRunner.class)  
 @ContextConfiguration(locations = { "classpath:spring/application-config.xml" })
 public class CursosDAOMyBatisTest {
 	
 	@Autowired
-	CursosMapper cursosMapper;
+	CursosDao cursosDao;
 	
 	@Test
 	public void getAll() {	
-		assertNotNull(cursosMapper);
-		List<Curso> all  = cursosMapper.getAll();
+		assertNotNull(cursosDao);
+		List<Curso> all  = cursosDao.getAll();
 		assertNotNull(all);
 		assertTrue(all.size()>0);		
 		System.out.println("Cantidad de cursos:"+all.size());
@@ -28,8 +30,8 @@ public class CursosDAOMyBatisTest {
 	
 	@Test
 	public void getAllActive() {	
-		assertNotNull(cursosMapper);
-		List<Curso> allActive  = cursosMapper.getAllActive();
+		assertNotNull(cursosDao);
+		List<Curso> allActive  = cursosDao.getAllActive();
 		assertNotNull(allActive);
 		assertTrue(allActive.size()>0);		
 		System.out.println("Cantidad de cursos activos:"+allActive.size());
@@ -37,25 +39,27 @@ public class CursosDAOMyBatisTest {
 
 	@Test
 	public void getFirst(){
-		assertNotNull(cursosMapper);
-		Curso first = cursosMapper.findByPK(1);
+		assertNotNull(cursosDao);
+		Curso first = cursosDao.findByPK(1);
 		assertNotNull(first);
-		assertTrue(first.idProfesor==1);
+		assertTrue(first.getIdCurso()==1);
 		System.out.println(first);
 	}
 	
 	@Test
 	public void insert(){
-		assertNotNull(cursosMapper);
+		assertNotNull(cursosDao);
 		
-		List<Curso> cursosAntes  = cursosMapper.getAll();
-		Curso nuevoCurso = new Curso("Test",1,1,1,false);		
-		cursosMapper.create(nuevoCurso);
+		List<Curso> cursosAntes  = cursosDao.getAll();
+		Nivel nivel = new Nivel(1);
+		Profesor profesor = new Profesor(1);
+		Curso nuevoCurso = new Curso("Test",1,nivel,profesor,false,"");		
+		cursosDao.create(nuevoCurso);
 		
-		assertTrue(cursosMapper.getAll().size()>cursosAntes.size());
+		assertTrue(cursosDao.getAll().size()>cursosAntes.size());
 		
-		cursosMapper.delete(nuevoCurso);
-		assertTrue(cursosMapper.getAll().size()==cursosAntes.size());		
+		cursosDao.delete(nuevoCurso);
+		assertTrue(cursosDao.getAll().size()==cursosAntes.size());		
 		
 	}
 }
